@@ -36,13 +36,31 @@ pipeline {
             }
         }
 
-
         stage('Terraform Apply') {
             steps {
                 dir("${TF_WORKDIR}") {
                     sh 'terraform apply -auto-approve tfplan'
                 }
             }
+        }
+
+        stage('Terraform Destroy') {
+            steps {
+                dir("${TF_WORKDIR}") {
+                    // Optional: confirm before destroying
+                    input message: "Do you want to destroy resources for ${env.BRANCH_NAME}?", ok: 'Destroy'
+
+                    // Destroy resources
+                    sh 'terraform destroy -auto-approve'
+                }
+            }
+        }
+
+    }
+
+    post {
+        always {
+            echo "Terraform pipeline completed."
         }
     }
 }
