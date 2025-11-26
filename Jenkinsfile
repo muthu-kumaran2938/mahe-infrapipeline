@@ -36,11 +36,6 @@ pipeline {
             }
         }
 
-        stage('Approval') {
-            steps {
-                input message: "Approve Terraform Apply for ${env.BRANCH_NAME}?", ok: 'Deploy'
-            }
-        }
 
         stage('Terraform Apply') {
             steps {
