@@ -44,16 +44,6 @@ pipeline {
             }
         }
 
-        stage('Terraform Destroy') {
-            steps {
-                dir("${TF_WORKDIR}") {
-                    sh 'terraform destroy -auto-approve'
-                }
-            }
-        }
-
-    }
-
     post {
         always {
             echo "Terraform pipeline completed."
