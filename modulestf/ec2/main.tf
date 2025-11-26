@@ -4,7 +4,7 @@ resource "aws_instance" "my-ec2" {
   subnet_id = var.subnet_id
   count     = var.ec2_count
   tags = {
-    Name = ${var.env}-${count.index}
+    Name = "${var.env}-${count.index}"
     env = var.env
   }
 }
