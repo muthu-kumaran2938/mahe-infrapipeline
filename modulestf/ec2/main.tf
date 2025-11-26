@@ -8,3 +8,7 @@ resource "aws_instance" "my-ec2" {
     env = var.env
   }
 }
+
+
+
+

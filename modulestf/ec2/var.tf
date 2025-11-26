@@ -23,8 +23,5 @@ variable "env" {
     type        = string
   
 }
-variable "Name" {
-    description = "Name tag for the instance"
-    type        = string
-  
-}
+
+
