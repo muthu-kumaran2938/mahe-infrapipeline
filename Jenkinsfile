@@ -10,6 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: "${env.BRANCH_NAME}", url: 'https://github.com/muthu-kumaran2938/mahe-infrapipeline.git'
+                credentialsId: 'git-credentials',
             }
         }
 
