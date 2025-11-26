@@ -23,31 +23,3 @@ pipeline {
                 dir("${TF_WORKDIR}") {
                     sh 'terraform init'
                 }
-            }
-        }
-
-        stage('Terraform Plan') {
-            steps {
-                dir("${TF_WORKDIR}") {
-                    sh 'terraform plan -out=tfplan'
-                    sh 'terraform show -no-color tfplan > tfplan.txt'
-                    sh 'cat tfplan.txt'
-                }
-            }
-        }
-
-        stage('Terraform Apply') {
-            steps {
-                dir("${TF_WORKDIR}") {
-                    sh 'terraform apply -auto-approve tfplan'
-                }
-            }
-        }
-
-    post {
-        always {
-            echo "Terraform pipeline completed."
-        }
-    }
-}
-}
