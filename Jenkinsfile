@@ -47,10 +47,6 @@ pipeline {
         stage('Terraform Destroy') {
             steps {
                 dir("${TF_WORKDIR}") {
-                    // Optional: confirm before destroying
-                    input message: "Do you want to destroy resources for ${env.BRANCH_NAME}?", ok: 'Destroy'
-
-                    // Destroy resources
                     sh 'terraform destroy -auto-approve'
                 }
             }
